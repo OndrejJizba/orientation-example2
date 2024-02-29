@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,18 @@ public class MainController {
         ClassA selectedClass = classAService.findById(classId);
         mentor.setClassA(selectedClass);
         mentorService.saveMentor(mentor);
-        return "redirect:/";
+        return "redirect:/mentor/" + mentor.getId();
+    }
+
+    @GetMapping("/mentor/{id}")
+    public String mentorDetail(@PathVariable Long id, Model model) throws Exception {
+        try {
+            Mentor mentor = mentorService.findById(id);
+            model.addAttribute("name", mentor.getName());
+            model.addAttribute("class", mentor.getClassA().getName());
+            return "mentor";
+        } catch (Exception e) {
+        return "not-found";
+        }
     }
 }

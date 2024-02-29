@@ -7,4 +7,5 @@ import java.util.List;
 public interface MentorService {
     List<Mentor> getAllMentors();
     Mentor saveMentor(Mentor mentor);
+    Mentor findById(Long id) throws Exception;
 }

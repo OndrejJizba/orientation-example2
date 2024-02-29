@@ -26,4 +26,9 @@ public class MentorServiceImp implements MentorService{
     public Mentor saveMentor(Mentor mentor) {
         return mentorRepository.save(mentor);
     }
+
+    @Override
+    public Mentor findById(Long id) throws Exception {
+        return mentorRepository.findById(id).orElseThrow(() -> new Exception("Mentor not found."));
+    }
 }

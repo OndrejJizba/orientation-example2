@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mentor Scheduler</title>
 </head>
 <body>
     <h1>See detail of mentors:</h1>
     <ul th:each="mentor : ${mentors}">
-        <li th:text="${mentor.name}"></li>
+        <a th:href="@{'mentor/' + ${mentor.id}}"><li th:text="${mentor.name}"></li></a>
     </ul>
     <h2>Add new mentor</h2>
     <form action="/mentor" method="post">
