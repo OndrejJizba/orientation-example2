@@ -1,6 +1,5 @@
 package com.gfa.orientationexampleexam2.services;
 
-import com.gfa.orientationexampleexam2.models.DTOs.MentorClass;
 import com.gfa.orientationexampleexam2.models.Mentor;
 
 import java.util.List;
