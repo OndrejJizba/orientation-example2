@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>See detail of mentors:</h1>
+    <ul th:each="mentor : ${mentors}">
+        <li th:text="${mentor.name}"></li>
+    </ul>
+    <h2>Add new mentor</h2>
+    <form>
+        <label for="name" id="name">Name</label><br>
+        <input type="text" name="name"><br>
+        <label for="class" id="class">Class</label><br>
+        <select name="class">
+            <option th:each="class : ${classes}" th:value="${class.name}" th:text="${class.name}"></option>
+        </select><br>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
