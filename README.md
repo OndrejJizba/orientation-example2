@@ -208,13 +208,23 @@ You are working with following SQL table of 10 outstanding videogames:
 `1.` Write SQL query to create the table
 
 ```mysql
-
+CREATE TABLE videogames (
+    id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255),
+  genre VARCHAR(255),
+  releaseDate DATE,
+  developer VARCHAR(255),
+  engine VARCHAR(255),
+  price INT,
+  rating FLOAT,
+  PRIMARY KEY (id));
 ```
 
 `2.` Write SQL query to insert one row of data
 
 ```mysql
-
+INSERT INTO videogames (name, genre, releaseDate, developer, engine, price, rating)
+VALUES ('The Witcher 3: Wild Hunt', 'RPG', '2015-05-19', 'CD Pŕojekt Red', 'REDengine 3', 1499, 9.2);
 ```
 
 
@@ -222,7 +232,7 @@ You are working with following SQL table of 10 outstanding videogames:
 titles and developers
 
 ```mysql
-
+SELECT name, developer FROM videogames WHERE genre = 'FPS' ORDER BY rating DESC LIMIT 2;
 ```
 
 
@@ -230,6 +240,6 @@ titles and developers
 go on sale (reduce its price by 200)
 
 ```mysql
-
+UPDATE videogames SET price = price - 200 WHERE YEAR(releaseDate) < 2000;
 ```
 
