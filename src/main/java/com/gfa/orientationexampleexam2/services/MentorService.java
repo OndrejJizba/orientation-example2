@@ -12,4 +12,5 @@ public interface MentorService {
     List<Mentor> findByClassName(String className);
     Mentor createMentor(String name, String className);
     boolean nameExist(String name);
+    Mentor updateMentor(Long id, String name) throws Exception;
 }

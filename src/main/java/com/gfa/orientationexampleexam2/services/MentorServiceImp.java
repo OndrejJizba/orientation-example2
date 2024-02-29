@@ -1,7 +1,6 @@
 package com.gfa.orientationexampleexam2.services;
 
 import com.gfa.orientationexampleexam2.models.ClassA;
-import com.gfa.orientationexampleexam2.models.DTOs.MentorClass;
 import com.gfa.orientationexampleexam2.models.Mentor;
 import com.gfa.orientationexampleexam2.repositories.ClassARepository;
 import com.gfa.orientationexampleexam2.repositories.MentorRepository;
@@ -53,5 +52,12 @@ public class MentorServiceImp implements MentorService{
     @Override
     public boolean nameExist(String name) {
         return mentorRepository.findAll().stream().anyMatch(m -> Objects.equals(m.getName(), name));
+    }
+
+    @Override
+    public Mentor updateMentor(Long id, String name) throws Exception {
+        Mentor updatedMentor = mentorRepository.findById(id).orElseThrow(() -> new Exception("Mentor not found"));
+        updatedMentor.setName(name);
+        return mentorRepository.save(updatedMentor);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 @RestController
@@ -51,4 +52,22 @@ public class MentorController {
             return ResponseEntity.status(200).body(result);
         }
     }
+
+    @PutMapping("/api/mentors/{mentorID}")
+    public ResponseEntity<?> updateMentor(@RequestBody MentorClass mentorClass, @PathVariable Long mentorID) throws Exception {
+        Map<String, String> result = new HashMap<>();
+
+        if (!classAService.nameExist(mentorClass.getClassName())) {
+            result.put("message", "Class not found");
+            return ResponseEntity.status(400).body(result);
+        } else if (mentorID > mentorService.getAllMentors().size()) {
+            result.put("message", "Mentor not found");
+            return ResponseEntity.status(404).body(result);
+        } else {
+            mentorService.updateMentor(mentorID, mentorClass.getName());
+            result.put("name", mentorClass.getName());
+            result.put("className", mentorClass.getClassName());
+            return ResponseEntity.status(200).body(result);
+        }
     }
+}
