@@ -19,7 +19,7 @@ public class ClassA {
     private Long id;
     private String name;
     @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ClassA> classList = new ArrayList<>();
+    private List<Mentor> mentorList = new ArrayList<>();
 
     public ClassA(String name) {
         this.name = name;

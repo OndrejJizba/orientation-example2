@@ -8,4 +8,5 @@ public interface MentorService {
     List<Mentor> getAllMentors();
     Mentor saveMentor(Mentor mentor);
     Mentor findById(Long id) throws Exception;
+    List<Mentor> findByClassName(String className);
 }
