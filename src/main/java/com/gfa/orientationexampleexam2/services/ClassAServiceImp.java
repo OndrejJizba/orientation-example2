@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ClassAServiceImp implements ClassAService{
@@ -25,5 +26,10 @@ public class ClassAServiceImp implements ClassAService{
     @Override
     public ClassA findById(Long id) throws Exception {
         return classARepository.findById(id).orElseThrow(() -> new Exception("Class not found."));
+    }
+
+    @Override
+    public boolean nameExist(String name) {
+        return classARepository.findAll().stream().anyMatch(c -> Objects.equals(c.getName(), name));
     }
 }

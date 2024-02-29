@@ -1,14 +1,15 @@
 package com.gfa.orientationexampleexam2.controllers;
 
+import com.gfa.orientationexampleexam2.models.DTOs.MentorClass;
 import com.gfa.orientationexampleexam2.models.Mentor;
 import com.gfa.orientationexampleexam2.services.ClassAService;
 import com.gfa.orientationexampleexam2.services.MentorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -31,4 +32,23 @@ public class MentorController {
             return ResponseEntity.status(200).body(mentorService.findByClassName(className));
         }
     }
-}
+
+    @PostMapping("/api/mentors")
+    public ResponseEntity<?> createMentor(@RequestBody MentorClass mentorClass) {
+        Map<String, Object> result = new HashMap<>();
+
+        if (!classAService.nameExist(mentorClass.getClassName())) {
+            result.put("message", "Class not found");
+            return ResponseEntity.status(400).body(result);
+        } else if (mentorService.nameExist(mentorClass.getName())) {
+            result.put("message", "Mentor already exists");
+            return ResponseEntity.status(400).body(result);
+        } else {
+            Mentor newMentor = mentorService.createMentor(mentorClass.getName(), mentorClass.getClassName());
+            result.put("id", newMentor.getId());
+            result.put("name", newMentor.getName());
+            result.put("className", newMentor.getClassA().getName());
+            return ResponseEntity.status(200).body(result);
+        }
+    }
+    }
