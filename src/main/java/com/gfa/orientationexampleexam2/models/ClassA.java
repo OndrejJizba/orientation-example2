@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -15,8 +18,8 @@ public class ClassA {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "classA")
-    private Mentor mentor;
+    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ClassA> classList = new ArrayList<>();
 
     public ClassA(String name) {
         this.name = name;

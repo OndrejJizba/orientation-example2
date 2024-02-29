@@ -21,4 +21,9 @@ public class ClassAServiceImp implements ClassAService{
     public List<ClassA> getAllClasses() {
         return classARepository.findAll();
     }
+
+    @Override
+    public ClassA findById(Long id) throws Exception {
+        return classARepository.findById(id).orElseThrow(() -> new Exception("Class not found."));
+    }
 }

@@ -15,7 +15,7 @@ public class Mentor {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name = "class_id")
     private ClassA classA;
 

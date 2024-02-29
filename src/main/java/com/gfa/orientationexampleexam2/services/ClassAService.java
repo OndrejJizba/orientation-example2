@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ClassAService {
     List<ClassA> getAllClasses();
+    ClassA findById(Long id) throws Exception;
 }

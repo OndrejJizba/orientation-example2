@@ -21,4 +21,9 @@ public class MentorServiceImp implements MentorService{
     public List<Mentor> getAllMentors() {
         return mentorRepository.findAll();
     }
+
+    @Override
+    public Mentor saveMentor(Mentor mentor) {
+        return mentorRepository.save(mentor);
+    }
 }
